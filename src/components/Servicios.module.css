@@ -1,0 +1,100 @@
+/* Agregar en tu global.css o styles/servicios.css */
+.serviciosSection{
+    padding: 5rem 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+.badgeServicios {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.svSub {
+  font-size: 15px;
+  color: #4a4a5a;
+  margin: 0 0 2.5rem;
+  max-width: 480px;
+}
+
+.svGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.svCard {
+  background: #fff;
+  border: 1px solid #e5e0d8;
+  border-radius: 12px;
+  padding: 1.5rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.svCard:hover { 
+    border-color: var(--primary-color); 
+    transform: translateY(-3px); 
+}
+
+.svCard:hover .svIconWrap { 
+    background: var(--primary-color); 
+}
+
+.svCard:hover .svIconWrap svg { 
+    stroke: #fff; 
+}
+
+.svIconWrap {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--secondary-color);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1rem;
+  transition: background 0.2s;
+}
+
+.svIconWrap svg { 
+    width: 22px;
+    height: 22px; 
+    stroke: var(--primary-color); 
+    fill: none; stroke-width: 1.8; 
+    stroke-linecap: round; stroke-linejoin: round; 
+    transition: stroke 0.2s; 
+}
+
+.svCardTitle { 
+    font-family: var(--font-heading); 
+    font-weight: 700; font-size: 15px; 
+    margin: 0 0 6px; 
+}
+
+.svCardDesc { 
+    font-size: 13px; 
+    line-height: 1.6; 
+    color: #5a5a6e; 
+    margin: 0; }
+
+.svAccentBar { 
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    width: 0; 
+    height: 3px; 
+    background: var(--primary-color); 
+    transition: width 0.3s ease; 
+}
+
+.svCard:hover .svAccentBar { 
+    width: 100%; 
+}
