@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { Header } from '../components/Header.jsx';
 import { Hero } from '../components/Hero';
 import { Servicios } from '../components/Servicios.jsx';
+import { About } from '../components/About.jsx';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
@@ -12,4 +13,5 @@ import { Servicios } from '../components/Servicios.jsx';
 	<Header client:load />
 	<Hero client:load/>
 	<Servicios client:load/>
+	<About client:load/>
 </Layout>
