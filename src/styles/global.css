@@ -15,8 +15,7 @@ h1, h2, h3 {
 
 body {
   font-family: var(--font-body);
-  font-weight: 400;
-  line-height: 1.6; 
+  font-weight: 400; 
   background-color: var(--bg-color);
   color: var(--text-color);
 }
