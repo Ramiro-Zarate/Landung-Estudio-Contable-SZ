@@ -1,0 +1,22 @@
+:root{
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --bg-color: #fbfbfe;
+    --text-color: #050316;
+    --primary-color: #9d1a15;
+    --secondary-color: #ede7e0;
+    --hover-color: #cacaca;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 700; 
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6; 
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}

@@ -1,0 +1,59 @@
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-inline: auto;
+    height: 4rem;
+    padding: 0 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.headerLink{
+    text-decoration: none;
+    
+
+}
+
+.headerLink h1{
+    display: flex;
+    align-items: center;
+    width: 12rem;
+    color: var(--text-color);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.logo{
+    width: 4rem;
+    height: 4rem;
+}
+
+.headerNav{
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.headerNav a{
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.headerNav a:hover{
+    color: var(--hover-color);
+}
+
+.header button{
+    background-color: var(--primary-color);
+    font-size: 1.25rem;
+    padding: .5rem 1rem;
+    color: white;
+    border: none;
+    border-radius: .2rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
