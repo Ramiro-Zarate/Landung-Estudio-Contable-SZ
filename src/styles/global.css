@@ -8,6 +8,10 @@
     --hover-color: #cacaca;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 h1, h2, h3 {
   font-family: var(--font-heading);
   font-weight: 700; 

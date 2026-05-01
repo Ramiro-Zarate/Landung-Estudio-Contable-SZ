@@ -2,7 +2,7 @@ import styles from './Hero.module.css'
 
 export function Hero(){
     return(
-        <section className={styles.hero}>
+        <section className={styles.hero} id="inicio">
             <div className={styles.heroContent}>
                 <h2 className={styles.heroTitle}>
                     Bienvenido a Estudio Contable SZ, tu socio confiable para soluciones contables y financieras.

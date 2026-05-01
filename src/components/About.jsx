@@ -34,7 +34,7 @@ const stats = [
 
 export function About() {
   return (
-    <section className={styles.abSection}>
+    <section className={styles.abSection} id="sobre-nosotros">
       <span className={styles.abBadge}>Quiénes somos</span>
 
       <h2 className={styles.abHeading}>

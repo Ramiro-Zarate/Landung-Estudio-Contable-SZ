@@ -10,18 +10,10 @@ export function Header(){
                 </h1>
             </a>
             <nav className={styles.headerNav}>
-                <a href="">
-                    Inicio
-                </a>
-                <a href="">
-                    Sobre Nosotros
-                </a>
-                <a href="">
-                    Servicios
-                </a>
-                <a href="">
-                    Contacto
-                </a>
+                <a href="#inicio">Inicio</a>
+                <a href="#sobre-nosotros">Sobre Nosotros</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#contacto">Contacto</a>
             </nav>
             <button>
                 Solicitar Consulta

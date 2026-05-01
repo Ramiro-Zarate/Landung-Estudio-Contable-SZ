@@ -70,7 +70,7 @@ const servicios = [
 
 export function Servicios() {
   return (
-    <section className={syles.serviciosSection}>
+    <section className={syles.serviciosSection} id="servicios">
       <span className={syles.badgeServicios}>Nuestros Servicios</span>
       <h2>Todo lo que tu empresa<br />necesita, en un solo lugar</h2>
       <p className={syles.svSub}>
