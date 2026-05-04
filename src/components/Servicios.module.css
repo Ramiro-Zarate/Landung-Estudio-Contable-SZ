@@ -19,6 +19,15 @@
   margin-bottom: 1rem;
 }
 
+.svHeading{
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 1.15;
+    /* margin: 0 auto 1.25rem; */
+    max-width: 560px;
+}
+
 .svSub {
   font-size: 15px;
   color: #4a4a5a;

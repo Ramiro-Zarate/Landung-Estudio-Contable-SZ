@@ -72,7 +72,7 @@ export function Servicios() {
   return (
     <section className={syles.serviciosSection} id="servicios">
       <span className={syles.badgeServicios}>Nuestros Servicios</span>
-      <h2>Todo lo que tu empresa<br />necesita, en un solo lugar</h2>
+      <h2 className={syles.svHeading}>Todo lo que tu empresa<br />necesita, en un solo lugar</h2>
       <p className={syles.svSub}>
         Brindamos soluciones contables y fiscales integrales para que puedas
         enfocarte en hacer crecer tu negocio.

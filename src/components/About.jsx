@@ -39,7 +39,7 @@ export function About() {
 
       <h2 className={styles.abHeading}>
         Contadores que entienden<br />
-        tu <em>negocio</em>, no solo tus números
+        tu <em>negocio</em>, no solo tus números.
       </h2>
 
       <p className={styles.abIntro}>
