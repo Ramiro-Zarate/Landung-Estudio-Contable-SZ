@@ -4,11 +4,13 @@ export function Hero(){
     return(
         <section className={styles.hero} id="inicio">
             <div className={styles.heroContent}>
+                <div className={styles.heroBadge}>estudio contable jurídico</div>
                 <h2 className={styles.heroTitle}>
-                    Bienvenido a Estudio Contable SZ, tu socio confiable para soluciones contables y financieras.
+                    Soluciones contables para empresas y profesionales
                 </h2>
                 <p className={styles.heroDesc}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere omnis quaerat consequuntur obcaecati incidunt voluptates dolor, voluptatem temporibus ut natus accusantium placeat deserunt possimus dignissimos laboriosam beatae corrupti. Earum, sequi.
+                    Asesoramiento contable, impositivo y financiero
+                    para empresas y profesionales.
                 </p>
                 <button className={styles.heroBtn}>Conocer Más</button>
             </div>
