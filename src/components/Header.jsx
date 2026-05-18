@@ -5,7 +5,7 @@ export function Header(){
         <header className={styles.header}>
             <a href="" className={styles.headerLink}>
                 <h1>
-                    <img className={styles.logo} src="../src/assets/logo.png" alt="" />
+                    <img className={styles.logo} src="../public/logo_estudio.jpg" alt="" />
                     Estudio Contable SZ
                 </h1>
             </a>
