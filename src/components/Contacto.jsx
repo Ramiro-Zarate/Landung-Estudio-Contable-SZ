@@ -1,6 +1,35 @@
+import React, {useRef, useState} from 'react'
+import emailjs from '@emailjs/browser'
 import styles from './Contacto.module.css'
 
 export function Contacto() {
+    const form = useRef();
+    const [cargando, setCargando] = useState(false);
+    const [resultado, setResultado] = useState(null);
+
+    const enviarEmail = (e) => {
+        e.preventDefault();
+        setCargando(true);
+        setResultado(null);
+
+        emailjs.sendForm(
+        'service_qdpjvh2',  
+        'template_m9c89uh',  
+        form.current,
+        'iUY5dKiWCT0bpxIuR'    
+        )
+        .then((result) => {
+            setResultado({ tipo: 'exito', mensaje: '¡Mensaje enviado con éxito! Te responderemos a la brevedad.' });
+            form.current.reset(); 
+        })
+        .catch((error) => {
+            console.error('Error de EmailJS:', error);
+            setResultado({ tipo: 'error', mensaje: 'Hubo un problema al enviar. Por favor, intentá de nuevo.' });
+        })
+        .finally(() => {
+            setCargando(false);
+        });
+    };
     return (
         <section className={styles.contacto} id="contacto">
             <h2 className={styles.contactoTitle}>Contacto</h2>
@@ -9,7 +38,7 @@ export function Contacto() {
             </p>
             
             <div className={styles.contactoGrid}>
-                <form className={styles.contactoForm}>
+                <form ref={form} onSubmit={enviarEmail} className={styles.contactoForm}>
                     <div className={styles.formGroup}>
                         <label htmlFor="nombre" className={styles.label}>Nombre</label>
                         <input 
@@ -43,9 +72,14 @@ export function Contacto() {
                             required
                         ></textarea>
                     </div>
-                    <button type="submit" className={styles.submitBtn}>
-                        Enviar Mensaje
+                    <button type="submit" className={styles.submitBtn} disabled={cargando}>
+                        {cargando ? 'Enviando...' : 'Enviar Mensaje'}
                     </button>
+                    {resultado && (
+                            <div className={`${styles.alerta} ${resultado.tipo === 'exito' ? styles.alertaExito : styles.alertaError}`}>
+                            {resultado.mensaje}
+                            </div>
+                        )}
                 </form>
 
                 <div className={styles.contactInfo}>
