@@ -5,13 +5,15 @@ import Hero from '../components/Hero.astro';
 import Servicios from '../components/Servicios.astro';
 import About from '../components/About.astro';
 import { Contacto } from '../components/Contacto.jsx';
+import Footer from '../components/Footer.astro';
 
 ---
 
 <Layout>
-	<Header client:load />
+	<Header client:idle />
 	<Hero />
 	<About />
 	<Servicios />
 	<Contacto client:load/>
+	<Footer />
 </Layout>

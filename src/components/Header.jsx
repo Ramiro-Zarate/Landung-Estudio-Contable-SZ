@@ -9,7 +9,7 @@ export function Header(){
 
     return(
         <header className={styles.header}>
-            <a href="" className={styles.headerLink}>
+            <a href="#inicio" className={styles.headerLink}>
                 <h1>
                     <img className={styles.logo} src="./logo_estudio.jpg" alt="" />
                     Estudio Contable SZ
@@ -20,9 +20,9 @@ export function Header(){
                 <a href="#sobre-nosotros" onClick={closeMenu}>Sobre Nosotros</a>
                 <a href="#servicios" onClick={closeMenu}>Servicios</a>
                 <a href="#contacto" onClick={closeMenu}>Contacto</a>
+                <button className={styles.mobileBtn} onClick={closeMenu}>Solicitar Consulta</button>
             </nav>
             <button className={styles.headerBtn}>Solicitar Consulta</button>
-            <button className={`${styles.mobileBtn} ${menuOpen ? styles.mobileBtnVisible : ''}`} onClick={closeMenu}>Solicitar Consulta</button>
             <button className={styles.hamburger} onClick={toggleMenu} aria-label="Menú">
                 <span className={`${styles.hamburgerLine} ${menuOpen ? styles.open : ''}`}></span>
                 <span className={`${styles.hamburgerLine} ${menuOpen ? styles.open : ''}`}></span>

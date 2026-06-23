@@ -27,30 +27,32 @@ const servicios = [
     descripcion: "Revisión exhaustiva de estados financieros para garantizar transparencia y confiabilidad.",
     icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
   },
-  {
+  /* {
     titulo: "Constitución de Empresas",
     descripcion: "Apertura de sociedades, trámites ante organismos y asesoramiento jurídico-contable.",
     icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>`,
-  },
+  }, */
 ];
 ---
 
 <section class={styles.serviciosSection} id="servicios">
-  <span class={styles.badgeServicios}>Nuestros Servicios</span>
-  <h2 class={styles.svHeading}>Todo lo que tu empresa<br />necesita, en un solo lugar</h2>
-  <p class={styles.svSub}>
-    Brindamos soluciones contables y fiscales integrales para que puedas
-    enfocarte en hacer crecer tu negocio.
-  </p>
+  <div class={styles.serviciosInner}>
+    <span class={styles.badgeServicios}>Nuestros Servicios</span>
+    <h2 class={styles.svHeading}>Todo lo que tu empresa<br />necesita, en un solo lugar</h2>
+    <p class={styles.svSub}>
+      Brindamos soluciones contables y fiscales integrales para que puedas
+      enfocarte en hacer crecer tu negocio.
+    </p>
 
-  <div class={styles.svGrid}>
-    {servicios.map((s) => (
-      <div class={styles.svCard}>
-        <div class={styles.svIconWrap} set:html={s.icono} />
-        <p class={styles.svCardTitle}>{s.titulo}</p>
-        <p class={styles.svCardDesc}>{s.descripcion}</p>
-        <div class={styles.svAccentBar} />
-      </div>
-    ))}
+    <div class={styles.svGrid}>
+      {servicios.map((s) => (
+        <div class={styles.svCard}>
+          <div class={styles.svIconWrap} set:html={s.icono} />
+          <p class={styles.svCardTitle}>{s.titulo}</p>
+          <p class={styles.svCardDesc}>{s.descripcion}</p>
+          <div class={styles.svAccentBar} />
+        </div>
+      ))}
+    </div>
   </div>
 </section>
