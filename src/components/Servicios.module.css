@@ -1,112 +1,327 @@
-.serviciosSection{
+.serviciosSection {
     background-color: var(--bg-alt);
 }
 
-.serviciosInner{
+.serviciosInner {
     max-width: 1100px;
     margin: 0 auto;
     padding: 5rem 1.5rem;
 }
 
-
 .badgeServicios {
-  display: inline-block;
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  padding: 4px 14px;
-  border-radius: 999px;
-  margin-bottom: 1rem;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 4px 14px;
+    border-radius: 999px;
+    margin-bottom: 1rem;
 }
 
-.svHeading{
+.svHeading {
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: 34px;
     line-height: 1.15;
-    /* margin: 0 auto 1.25rem; */
     max-width: 560px;
 }
 
 .svSub {
-  font-size: 15px;
-  color: #4a4a5a;
-  margin: 0 0 2.5rem;
-  max-width: 480px;
+    font-size: 15px;
+    color: #4a4a5a;
+    margin: 0 0 2.5rem;
+    max-width: 480px;
 }
 
 .svGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
 }
 
 .svCard {
-  background: #fff;
-  border: 1px solid #e5e0d8;
-  border-radius: 12px;
-  padding: 1.5rem 1.25rem;
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.2s, transform 0.2s;
+    background: #fff;
+    border: 1px solid #e5e0d8;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
 }
 
-.svCard:hover { 
-    border-color: var(--primary-color); 
-    transform: translateY(-3px); 
+.svCard:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
 }
 
-.svCard:hover .svIconWrap { 
-    background: var(--primary-color); 
-}
-
-.svCard:hover .svIconWrap svg { 
-    stroke: #fff; 
+.svTrigger {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 1.5rem 1.25rem;
+    cursor: pointer;
+    font-family: inherit;
+    color: inherit;
 }
 
 .svIconWrap {
-  width: 44px; height: 44px;
-  border-radius: 10px;
-  background: var(--secondary-color);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1rem;
-  transition: background 0.2s;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    transition: background 0.2s;
 }
 
-.svIconWrap svg { 
-    width: 22px;
-    height: 22px; 
-    stroke: var(--primary-color); 
-    fill: none; stroke-width: 1.8; 
-    stroke-linecap: round; stroke-linejoin: round; 
-    transition: stroke 0.2s; 
+.svIconWrap svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--primary-color);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.2s;
 }
 
-.svCardTitle { 
-    font-family: var(--font-heading); 
-    font-weight: 700; font-size: 15px; 
-    margin: 0 0 6px; 
+.svCard:hover .svIconWrap {
+    background: var(--primary-color);
 }
 
-.svCardDesc { 
-    font-size: 13px; 
-    line-height: 1.6; 
-    color: #5a5a6e; 
-    margin: 0; }
-
-.svAccentBar { 
-    position: absolute; 
-    bottom: 0; 
-    left: 0; 
-    width: 0; 
-    height: 3px; 
-    background: var(--primary-color); 
-    transition: width 0.3s ease; 
+.svCard:hover .svIconWrap svg {
+    stroke: #fff;
 }
 
-.svCard:hover .svAccentBar { 
-    width: 100%; 
+.svCardTitle {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0 0 6px;
+}
+
+.svCardDesc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #5a5a6e;
+    margin: 0;
+    padding-right: 1.75rem;
+}
+
+.svExpandIcon {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.25rem;
+    width: 18px;
+    height: 18px;
+    color: var(--primary-color);
+    opacity: 0.55;
+    transition: opacity 0.2s, transform 0.2s;
+    pointer-events: none;
+}
+
+.svCard:hover .svExpandIcon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.svAccentBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.svCard:hover .svAccentBar {
+    width: 100%;
+}
+
+/* Modal */
+.modalBackdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    z-index: 200;
+    transition: background-color 0.2s ease;
+}
+
+.backdropVisible {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modalContent {
+    background: #fff;
+    border-radius: 16px;
+    padding: 2.5rem 2rem 2rem;
+    max-width: 720px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.modalClose {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: #5a5a6e;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+}
+
+.modalClose:hover {
+    background: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+.modalClose:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.modalClose svg {
+    width: 20px;
+    height: 20px;
+}
+
+.modalIconWrap {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    background: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+}
+
+.modalIconWrap svg {
+    width: 44px;
+    height: 44px;
+    stroke: var(--primary-color);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.modalTitle {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.15;
+    margin: 0 0 0.75rem;
+    color: var(--text-color);
+}
+
+.modalDesc {
+    font-size: 15px;
+    line-height: 1.5;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin: 0 0 1.25rem;
+}
+
+.modalDetalle {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #4a4a5a;
+    margin: 0 0 1.5rem;
+}
+
+.modalIncluyeTitle {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-color);
+    margin: 0 0 0.85rem;
+}
+
+.modalIncluye {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem 1.5rem;
+}
+
+.modalIncluye li {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #4a4a5a;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.modalIncluye li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 7px;
+    height: 7px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+@media (max-width: 640px) {
+    .modalContent {
+        padding: 2rem 1.25rem 1.5rem;
+        max-height: 90vh;
+    }
+
+    .modalIconWrap {
+        width: 64px;
+        height: 64px;
+    }
+
+    .modalIconWrap svg {
+        width: 36px;
+        height: 36px;
+    }
+
+    .modalTitle {
+        font-size: 22px;
+    }
+
+    .modalIncluye {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .modalBackdrop {
+        transition: none;
+    }
+
+    .modalContent {
+        transition: none;
+    }
 }

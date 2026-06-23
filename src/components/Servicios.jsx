@@ -1,0 +1,287 @@
+import { useState, useRef, useLayoutEffect, useEffect } from 'react'
+import styles from './Servicios.module.css'
+
+const servicios = [
+  {
+    titulo: "Contabilidad General",
+    descripcion: "Registro y seguimiento de todas tus operaciones contables con precisión y orden.",
+    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+    detalle: "Llevamos el registro completo y actualizado de todas las operaciones contables, con conciliaciones bancarias mensuales, ajustes por inflación cuando corresponda, y reportes ejecutivos para tener el control financiero al día.",
+    incluye: ["Asientos mensuales", "Conciliaciones bancarias", "Estados contables", "Reportes de gestión", "Mayorización y ajustes"],
+  },
+  {
+    titulo: "Liquidación de Impuestos",
+    descripcion: "Gestión de IVA, Ganancias, Bienes Personales y todos los tributos nacionales y provinciales.",
+    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>`,
+    detalle: "Gestionamos la presentación y pago de todos los tributos nacionales, provinciales y municipales, con planificación fiscal estratégica para optimizar la carga tributaria dentro del marco legal.",
+    incluye: ["IVA", "Ganancias", "Bienes Personales", "Cargas sociales", "Tasas municipales", "Planificación fiscal"],
+  },
+  {
+    titulo: "Liquidación de Sueldos",
+    descripcion: "Liquidaciones mensuales, aguinaldos, vacaciones y cargas sociales al día.",
+    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    detalle: "Nos encargamos de la liquidación mensual del personal en relación de dependencia, incluyendo recibos digitales, certificaciones, y cumplimiento de cargas sociales en tiempo y forma.",
+    incluye: ["Liquidaciones", "Aguinaldo", "Vacaciones", "Cargas sociales", "Recibos digitales", "Certificaciones"],
+  },
+  {
+    titulo: "Asesoramiento Fiscal",
+    descripcion: "Planificación tributaria para optimizar la carga impositiva de tu empresa legalmente.",
+    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+    detalle: "Analizamos tu situación particular y diseñamos una estrategia tributaria personalizada para reducir la carga impositiva legalmente, aprovechando beneficios y regímenes promocionales disponibles.",
+    incluye: ["Diagnóstico fiscal", "Planificación tributaria", "Optimización legal", "Beneficios y regímenes", "Asesoría preventiva"],
+  },
+  {
+    titulo: "Auditoría Contable",
+    descripcion: "Revisión exhaustiva de estados financieros para garantizar transparencia y confiabilidad.",
+    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+    detalle: "Revisión exhaustiva e independiente de tus estados financieros y registros contables, generando un dictamen profesional que brinda confianza a socios, inversores y organismos de control.",
+    incluye: ["Revisión de estados", "Dictamen profesional", "Controles internos", "Detección de desvíos", "Recomendaciones"],
+  },
+  {
+    titulo: "Constitución de Empresas",
+    descripcion: "Apertura de sociedades, trámites ante organismos y asesoramiento jurídico-contable.",
+    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>`,
+    detalle: "Acompañamos el proceso completo de apertura de tu sociedad, desde la elección del tipo societario hasta la inscripción en los organismos correspondientes, incluyendo el asesoramiento jurídico-contable inicial.",
+    incluye: ["Tipo societario a medida", "Trámite IGJ/RPC", "Inscripción AFIP/ARCA", "Habilitaciones", "Asesoría jurídico-contable"],
+  },
+];
+
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function flipTransform(originRect, modalRect) {
+  const cardCenterX = originRect.left + originRect.width / 2;
+  const cardCenterY = originRect.top + originRect.height / 2;
+  const modalCenterX = modalRect.left + modalRect.width / 2;
+  const modalCenterY = modalRect.top + modalRect.height / 2;
+  const scale = Math.max(
+    0.6,
+    Math.min(
+      originRect.width / modalRect.width,
+      originRect.height / modalRect.height
+    )
+  );
+  return {
+    tx: cardCenterX - modalCenterX,
+    ty: cardCenterY - modalCenterY,
+    scale,
+  };
+}
+
+function ServicioCard({ servicio, onClick }) {
+  return (
+    <article className={styles.svCard}>
+      <button
+        type="button"
+        className={styles.svTrigger}
+        onClick={onClick}
+        aria-label={`Ver más sobre ${servicio.titulo}`}
+      >
+        <div
+          className={styles.svIconWrap}
+          dangerouslySetInnerHTML={{ __html: servicio.icono }}
+        />
+        <p className={styles.svCardTitle}>{servicio.titulo}</p>
+        <p className={styles.svCardDesc}>{servicio.descripcion}</p>
+        <svg
+          className={styles.svExpandIcon}
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <polyline points="15 3 21 3 21 9" />
+          <polyline points="9 21 3 21 3 15" />
+          <line x1="21" y1="3" x2="14" y2="10" />
+          <line x1="3" y1="21" x2="10" y2="14" />
+        </svg>
+        <div className={styles.svAccentBar} />
+      </button>
+    </article>
+  );
+}
+
+function ServicioModal({ servicio, originRect, onClose }) {
+  const modalRef = useRef(null);
+  const closeRef = useRef(null);
+  const closingRef = useRef(false);
+  const [backdropFaded, setBackdropFaded] = useState(false);
+
+  useLayoutEffect(() => {
+    if (!modalRef.current || !originRect) return;
+
+    const modal = modalRef.current;
+
+    if (prefersReducedMotion()) {
+      setBackdropFaded(true);
+      setTimeout(() => closeRef.current?.focus(), 50);
+      return;
+    }
+
+    const modalRect = modal.getBoundingClientRect();
+    const { tx, ty, scale } = flipTransform(originRect, modalRect);
+
+    modal.style.transformOrigin = 'center center';
+    modal.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+    modal.style.opacity = '0';
+
+    void modal.offsetHeight;
+
+    requestAnimationFrame(() => {
+      modal.style.transition =
+        'transform 0.12s cubic-bezier(0.2, 0, 0, 1)';
+      modal.style.transform = 'translate(0, 0) scale(1)';
+      modal.style.opacity = '1';
+      setBackdropFaded(true);
+    });
+
+    const focusTimer = setTimeout(() => closeRef.current?.focus(), 150);
+
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
+    return () => {
+      clearTimeout(focusTimer);
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+    };
+  }, [originRect]);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === 'Escape') handleClose();
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleClose = () => {
+    if (closingRef.current) return;
+    closingRef.current = true;
+
+    if (!modalRef.current || !originRect || prefersReducedMotion()) {
+      onClose();
+      return;
+    }
+
+    const modal = modalRef.current;
+    const modalRect = modal.getBoundingClientRect();
+    const { tx, ty, scale } = flipTransform(originRect, modalRect);
+
+    modal.style.transition =
+      'transform 0.1s cubic-bezier(0.2, 0, 0, 1)';
+    modal.style.transform = `translate(${tx}px, ${ty}px) scale(${scale})`;
+    modal.style.opacity = '0';
+
+    setTimeout(onClose, 100);
+  };
+
+  return (
+    <div
+      className={`${styles.modalBackdrop} ${backdropFaded ? styles.backdropVisible : ''}`}
+      onClick={handleClose}
+    >
+      <div
+        ref={modalRef}
+        className={styles.modalContent}
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="servicio-modal-title"
+      >
+        <button
+          ref={closeRef}
+          className={styles.modalClose}
+          onClick={handleClose}
+          aria-label="Cerrar"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <div
+          className={styles.modalIconWrap}
+          dangerouslySetInnerHTML={{ __html: servicio.icono }}
+        />
+        <h3 className={styles.modalTitle} id="servicio-modal-title">
+          {servicio.titulo}
+        </h3>
+        <p className={styles.modalDesc}>{servicio.descripcion}</p>
+        <p className={styles.modalDetalle}>{servicio.detalle}</p>
+        <h4 className={styles.modalIncluyeTitle}>Qué incluye</h4>
+        <ul className={styles.modalIncluye}>
+          {servicio.incluye.map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+export function Servicios() {
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [originRect, setOriginRect] = useState(null);
+  const lastClickedRef = useRef(null);
+
+  const handleCardClick = (index, event) => {
+    lastClickedRef.current = event.currentTarget;
+    setOriginRect(event.currentTarget.getBoundingClientRect());
+    setSelectedIndex(index);
+  };
+
+  const handleClose = () => {
+    setSelectedIndex(null);
+    setOriginRect(null);
+    setTimeout(() => lastClickedRef.current?.focus(), 50);
+  };
+
+  return (
+    <section className={styles.serviciosSection} id="servicios">
+      <div className={styles.serviciosInner}>
+        <span className={styles.badgeServicios}>Nuestros Servicios</span>
+        <h2 className={styles.svHeading}>
+          Todo lo que tu empresa<br />necesita, en un solo lugar
+        </h2>
+        <p className={styles.svSub}>
+          Brindamos soluciones contables y fiscales integrales para que puedas
+          enfocarte en hacer crecer tu negocio.
+        </p>
+
+        <div className={styles.svGrid}>
+          {servicios.map((s, i) => (
+            <ServicioCard
+              key={s.titulo}
+              servicio={s}
+              onClick={(e) => handleCardClick(i, e)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {selectedIndex !== null && (
+        <ServicioModal
+          servicio={servicios[selectedIndex]}
+          originRect={originRect}
+          onClose={handleClose}
+        />
+      )}
+    </section>
+  );
+}
