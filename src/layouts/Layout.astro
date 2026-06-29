@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import fondoMainWebp from '../assets/fondo_main.webp';
+import WhatsappButton from '../components/WhatsappButton.astro';
 ---
 <!doctype html>
 <html lang="es">
@@ -15,10 +16,11 @@ import fondoMainWebp from '../assets/fondo_main.webp';
 		<meta name="description" content="En Estudio Contable SZ, ofrecemos servicios contables y fiscales personalizados para pequeñas y medianas empresas. Nuestro equipo de expertos se dedica a ayudarte a alcanzar tus objetivos financieros con soluciones integrales y un enfoque centrado en el cliente." />
 		<link rel="icon" href="/logo_estudio.webp" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Estudio SZ | Asesoría Contable, Impositiva y Laboral</title>
+		<title>Estudio Contable SZ | Asesoría Contable, Impositiva y Laboral</title>
 	</head>
 	<body>
 		<slot />
+		<WhatsappButton />
 	</body>
 </html>
 
