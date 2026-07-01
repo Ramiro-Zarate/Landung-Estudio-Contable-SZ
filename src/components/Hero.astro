@@ -3,15 +3,25 @@ import styles from './Hero.module.css'
 ---
 
 <section class={styles.hero} id="inicio">
+    <img
+        class={styles.heroImg}
+        src="/fondo_hero.webp"
+        alt=""
+        width="1920"
+        height="1280"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+    />
     <div class={styles.heroContent}>
-        <div class={styles.heroBadge}>estudio contable</div>
-        <h2 class={styles.heroTitle}>
+        <span class={styles.heroBadge}>estudio contable</span>
+        <h1 class={styles.heroTitle}>
             Soluciones contables para empresas y profesionales
-        </h2>
+        </h1>
         <p class={styles.heroDesc}>
             Asesoramiento contable, impositivo y financiero
             para empresas y profesionales.
         </p>
-        <button class={styles.heroBtn}>Conocer Más</button>
+        <a href="#servicios" class={styles.heroBtn}>Conocer Más</a>
     </div>
 </section>

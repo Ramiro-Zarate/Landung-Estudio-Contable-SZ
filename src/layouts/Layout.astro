@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import fondoMainWebp from '../assets/fondo_main.webp';
 import WhatsappButton from '../components/WhatsappButton.astro';
 ---
 <!doctype html>
@@ -10,9 +9,9 @@ import WhatsappButton from '../components/WhatsappButton.astro';
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-		<link rel="preload" as="image" href={fondoMainWebp.src} type="image/webp" fetchpriority="high" />
+		<link rel="preload" as="image" href="/fondo_hero.webp" type="image/webp" fetchpriority="high" />
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 		<meta name="description" content="En Estudio Contable SZ, ofrecemos servicios contables y fiscales personalizados para pequeñas y medianas empresas. Nuestro equipo de expertos se dedica a ayudarte a alcanzar tus objetivos financieros con soluciones integrales y un enfoque centrado en el cliente." />
 		<link rel="icon" href="/logo_estudio.webp" />
 		<meta name="generator" content={Astro.generator} />

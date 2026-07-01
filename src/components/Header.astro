@@ -1,0 +1,88 @@
+---
+import styles from './Header.module.css';
+---
+
+<header class={styles.header}>
+    <a href="#inicio" class={styles.headerLink} aria-label="Estudio Contable SZ - Ir al inicio">
+        <img
+            class={styles.logo}
+            src="/logo_estudio.webp"
+            width="56"
+            height="56"
+            alt=""
+        />
+        <span class={styles.brand}>Estudio Contable SZ</span>
+    </a>
+    <button
+        type="button"
+        class={styles.hamburger}
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="primary-nav"
+        data-menu-toggle
+    >
+        <span class={styles.hamburgerLine}></span>
+        <span class={styles.hamburgerLine}></span>
+        <span class={styles.hamburgerLine}></span>
+    </button>
+    <nav
+        id="primary-nav"
+        class={styles.headerNav}
+        data-menu
+        data-open="false"
+        aria-label="Navegación principal"
+    >
+        <a href="#inicio" data-menu-link>Inicio</a>
+        <a href="#sobre-nosotros" data-menu-link>Sobre Nosotros</a>
+        <a href="#servicios" data-menu-link>Servicios</a>
+        <a href="#contacto" data-menu-link>Contacto</a>
+        <a class={styles.mobileBtn} href="#contacto" data-menu-link>Solicitar Consulta</a>
+    </nav>
+    <a class={styles.headerBtn} href="#contacto">Solicitar Consulta</a>
+</header>
+
+<script>
+    const header = document.querySelector('header');
+    if (header) {
+        const toggle = header.querySelector('[data-menu-toggle]');
+        const menu = header.querySelector('[data-menu]');
+        const links = header.querySelectorAll('[data-menu-link]');
+        const mobile = window.matchMedia('(max-width: 768px)');
+
+        if (toggle && menu) {
+            const setOpen = (open) => {
+                toggle.setAttribute('aria-expanded', String(open));
+                toggle.setAttribute('aria-label', open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
+                menu.dataset.open = String(open);
+                document.documentElement.style.overflow = open ? 'hidden' : '';
+            };
+
+            toggle.addEventListener('click', () => {
+                const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+                setOpen(!isOpen);
+                if (!isOpen) {
+                    const firstLink = menu.querySelector('a');
+                    if (firstLink) {
+                        requestAnimationFrame(() => firstLink.focus({ preventScroll: true }));
+                    }
+                }
+            });
+
+            links.forEach((link) => {
+                link.addEventListener('click', () => {
+                    if (mobile.matches && toggle.getAttribute('aria-expanded') === 'true') {
+                        setOpen(false);
+                    }
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+                    e.preventDefault();
+                    setOpen(false);
+                    toggle.focus();
+                }
+            });
+        }
+    }
+</script>
