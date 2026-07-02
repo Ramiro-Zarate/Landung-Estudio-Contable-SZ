@@ -84,7 +84,7 @@ function ServicioCard({ servicio, onClick }) {
         type="button"
         className={styles.svTrigger}
         onClick={onClick}
-        aria-label={`Ver más sobre ${servicio.titulo}`}
+        aria-label={`${servicio.titulo} - ${servicio.descripcion}`}
       >
         <div className={styles.svIconWrap}>
           <servicio.Icon />

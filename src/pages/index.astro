@@ -12,8 +12,10 @@ import Footer from '../components/Footer.astro';
 <Layout>
 	<Header />
 	<Hero />
-	<About />
-	<Servicios client:visible />
-	<Contacto client:load/>
+	<main>
+		<About />
+		<Servicios client:visible />
+		<Contacto client:load/>
+	</main>
 	<Footer />
 </Layout>
