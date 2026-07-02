@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://estudiocontablesz.com/sitemap-index.xml
