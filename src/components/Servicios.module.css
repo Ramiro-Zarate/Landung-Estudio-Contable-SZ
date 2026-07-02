@@ -51,6 +51,12 @@
     transition: border-color 0.2s, transform 0.2s;
 }
 
+.cardText{
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
 .svCard:hover {
     border-color: var(--primary-color);
     transform: translateY(-3px);

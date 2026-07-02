@@ -89,8 +89,11 @@ function ServicioCard({ servicio, onClick }) {
         <div className={styles.svIconWrap}>
           <servicio.Icon />
         </div>
-        <p className={styles.svCardTitle}>{servicio.titulo}</p>
-        <p className={styles.svCardDesc}>{servicio.descripcion}</p>
+        <div className={styles.cardText}>
+          <p className={styles.svCardTitle}>{servicio.titulo}</p>
+          <p className={styles.svCardDesc}>{servicio.descripcion}</p>
+        </div>
+        
         <svg
           className={styles.svExpandIcon}
           viewBox="0 0 24 24"
