@@ -1,46 +1,54 @@
 import { useState, useRef, useLayoutEffect, useEffect } from 'react'
 import styles from './Servicios.module.css'
+import {
+  IconContabilidad,
+  IconImpuestos,
+  IconSueldos,
+  IconFiscal,
+  IconAuditoria,
+  IconConstitucion,
+} from './ServiciosIcons.jsx'
 
 const servicios = [
   {
     titulo: "Contabilidad General",
     descripcion: "Registro y seguimiento de todas tus operaciones contables con precisión y orden.",
-    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+    Icon: IconContabilidad,
     detalle: "Llevamos el registro completo y actualizado de todas las operaciones contables, con conciliaciones bancarias mensuales, ajustes por inflación cuando corresponda, y reportes ejecutivos para tener el control financiero al día.",
     incluye: ["Asientos mensuales", "Conciliaciones bancarias", "Estados contables", "Reportes de gestión", "Mayorización y ajustes"],
   },
   {
     titulo: "Liquidación de Impuestos",
     descripcion: "Gestión de IVA, Ganancias, Bienes Personales y todos los tributos nacionales y provinciales.",
-    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>`,
+    Icon: IconImpuestos,
     detalle: "Gestionamos la presentación y pago de todos los tributos nacionales, provinciales y municipales, con planificación fiscal estratégica para optimizar la carga tributaria dentro del marco legal.",
     incluye: ["IVA", "Ganancias", "Bienes Personales", "Cargas sociales", "Tasas municipales", "Planificación fiscal"],
   },
   {
     titulo: "Liquidación de Sueldos",
     descripcion: "Liquidaciones mensuales, aguinaldos, vacaciones y cargas sociales al día.",
-    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    Icon: IconSueldos,
     detalle: "Nos encargamos de la liquidación mensual del personal en relación de dependencia, incluyendo recibos digitales, certificaciones, y cumplimiento de cargas sociales en tiempo y forma.",
     incluye: ["Liquidaciones", "Aguinaldo", "Vacaciones", "Cargas sociales", "Recibos digitales", "Certificaciones"],
   },
   {
     titulo: "Asesoramiento Fiscal",
     descripcion: "Planificación tributaria para optimizar la carga impositiva de tu empresa legalmente.",
-    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
+    Icon: IconFiscal,
     detalle: "Analizamos tu situación particular y diseñamos una estrategia tributaria personalizada para reducir la carga impositiva legalmente, aprovechando beneficios y regímenes promocionales disponibles.",
     incluye: ["Diagnóstico fiscal", "Planificación tributaria", "Optimización legal", "Beneficios y regímenes", "Asesoría preventiva"],
   },
   {
     titulo: "Auditoría Contable",
     descripcion: "Revisión exhaustiva de estados financieros para garantizar transparencia y confiabilidad.",
-    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
+    Icon: IconAuditoria,
     detalle: "Revisión exhaustiva e independiente de tus estados financieros y registros contables, generando un dictamen profesional que brinda confianza a socios, inversores y organismos de control.",
     incluye: ["Revisión de estados", "Dictamen profesional", "Controles internos", "Detección de desvíos", "Recomendaciones"],
   },
   {
     titulo: "Constitución de Empresas",
     descripcion: "Apertura de sociedades, trámites ante organismos y asesoramiento jurídico-contable.",
-    icono: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>`,
+    Icon: IconConstitucion,
     detalle: "Acompañamos el proceso completo de apertura de tu sociedad, desde la elección del tipo societario hasta la inscripción en los organismos correspondientes, incluyendo el asesoramiento jurídico-contable inicial.",
     incluye: ["Tipo societario a medida", "Trámite IGJ/RPC", "Inscripción AFIP/ARCA", "Habilitaciones", "Asesoría jurídico-contable"],
   },
@@ -78,10 +86,9 @@ function ServicioCard({ servicio, onClick }) {
         onClick={onClick}
         aria-label={`Ver más sobre ${servicio.titulo}`}
       >
-        <div
-          className={styles.svIconWrap}
-          dangerouslySetInnerHTML={{ __html: servicio.icono }}
-        />
+        <div className={styles.svIconWrap}>
+          <servicio.Icon />
+        </div>
         <p className={styles.svCardTitle}>{servicio.titulo}</p>
         <p className={styles.svCardDesc}>{servicio.descripcion}</p>
         <svg
@@ -215,10 +222,9 @@ function ServicioModal({ servicio, originRect, onClose }) {
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
-        <div
-          className={styles.modalIconWrap}
-          dangerouslySetInnerHTML={{ __html: servicio.icono }}
-        />
+        <div className={styles.modalIconWrap}>
+          <servicio.Icon />
+        </div>
         <h3 className={styles.modalTitle} id="servicio-modal-title">
           {servicio.titulo}
         </h3>
